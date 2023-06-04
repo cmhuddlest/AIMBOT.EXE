@@ -1,0 +1,17 @@
+@import url(https://fonts.googleapis.com/css?family=Share+Tech+Mono:regular);
+
+body {
+
+    height:100vh;
+    color: grey;
+    background-color: black;
+    text-align: center;
+    font-family: 
+}
+ul {
+justify-content: center;
+list-style: none;
+}
+#press{
+    outline: 0em;
+}
