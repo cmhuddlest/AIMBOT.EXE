@@ -45,33 +45,6 @@ const killStat = document.querySelector('#kills');
 const timeStat = document.querySelector('#time');
 //-----testing different enemy locations and sizes for array --------
 /*
-{
-        x: .18,
-        y: .48,
-        height: '60px',
-        width: '25px'
-    },
-    {
-        x: .69,
-        y: .45,
-        height: '50px',
-        width: '60px'
-    },
-    {
-        x: .60,
-        y: .45,
-        height: '120px',
-        width: '60px'
-    }
-*/
-//----original thought on arrays for location and size----
-// const enemyLocs = [[.18, .48]];
-// const enemySizes = [['60px', '25px']];
-
-//-----array of good enemy locations for dust map------
-//array:
-const enemies = [
-    //objects:
     {
         x: .18, //left and right
         y: .48, //up and down
@@ -93,6 +66,58 @@ const enemies = [
         height: '120px',
         width: '60px',
         func: () => console.log('Guy who planted')
+    }
+*/
+//----original thought on arrays for location and size----
+// const enemyLocs = [[.18, .48]];
+// const enemySizes = [['60px', '25px']];
+
+//-----array of good enemy locations for dust map------
+//array:
+const enemies = [
+    //objects:
+    {
+        x: .18, //left and right
+        y: .48, //up and down
+        height: '60px',
+        width: '25px',
+        func: () => console.log('A long guy') //potential kill feed call value
+    //     //---- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions ----
+    },
+    {
+        x: .69,
+        y: .45,
+        height: '50px',
+        width: '60px',
+        func: () => console.log('He\'s pushing')
+    },
+    {
+        x: .60,
+        y: .45,
+        height: '120px',
+        width: '60px',
+        func: () => console.log('Guy who planted')
+    },
+    {
+        x: .04,
+        y: .55,
+        height: '155px',
+        width: '75px',
+        func: () => console.log('Guy who rushed')
+    },
+    {
+        x: .50,
+        y: .35,
+        height: '80px',
+        width: '100px',
+        func: () => console.log('Guy crouched on da box')
+    },
+    {
+        x: .96,
+        y: .03,
+        height: '120px',
+        width: '80px',
+        func: () => console.log('How did he get up there')
     }
 ];
 //container = HTML div covering entire page

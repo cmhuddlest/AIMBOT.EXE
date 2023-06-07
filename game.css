@@ -21,7 +21,7 @@ z-index: 2;
 .enemy{
     position: absolute;
     height: 50%;
-    background-image: url(./enemy.jpg);
+    background-image: url(enemy.jpg);
     background-repeat: no-repeat;
     background-size: 100% 100%;
     /*added hitbox */
