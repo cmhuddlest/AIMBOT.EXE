@@ -6,12 +6,44 @@ body {
     color: grey;
     background-color: black;
     text-align: center;
-    font-family: 
+    font-family: "Share+Tech+Mono:regular", sans-serif;
 }
 ul {
-justify-content: center;
 list-style: none;
+justify-content: center;
 }
 #press{
+    justify-content: space-between;
+    align-items: center;
     outline: 0em;
+} 
+.press{
+    cursor: pointer;
+    border: 0cap;
+    background-color: transparent;
+    font-size: medium;
+    color: inherit;
+    padding: 1em 1em;
 }
+.start{
+    cursor: pointer;
+    border: 1em solid red;
+    background-color: transparent;
+    font-size: medium;
+    color: red;
+    padding: 1em 1em; 
+}
+
+.press:active {
+background-color: grey;
+  }
+
+  img{
+    height: 20%;
+    width: 20%;
+  }
+
+  .weaponList{
+    border: none;
+  }
+  
