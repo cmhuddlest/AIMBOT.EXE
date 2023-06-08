@@ -40,3 +40,8 @@ startBtn.addEventListener('click', function (e) {
 
 //wanted to add map selector here as well, using same array from loadout.js with additional items in objects
 //in each object have background image and input enemy positions/sizes here as well to be custom to each map
+
+//start audio on page load
+let startup = new Audio(`audio/radiobotstart07.wav`);
+startup.volume = .1;
+startup.play();

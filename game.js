@@ -67,7 +67,7 @@ document.addEventListener('click', function(){
     if(!gameTimer) return;
     //create new audio each click so that the sound can be repeated as quickly as you click
     let audio = new Audio(audioClip);
-    audio.volume = .20;
+    audio.volume = .05;
     audio.play();
     //each click adds one value to shot
     shots++;
@@ -147,19 +147,34 @@ const enemies = [
         func: () => console.log('Guy who rushed')
     },
     {
-        x: .50,
+        x: .49,
         y: .35,
         height: '80px',
         width: '100px',
         func: () => console.log('Guy crouched on da box')
     },
     {
-        x: .96,
-        y: .03,
-        height: '120px',
+        x: .94,
+        y: .07,
+        height: '77px',
         width: '80px',
         func: () => console.log('How did he get up there')
+    },
+    {
+        x: .24,
+        y: .50,
+        height: '65px',
+        width: '40px',
+        func: () => console.log('Coming up long')
+    },
+    {
+        x: .17,
+        y: .3722,
+        height: '42px',
+        width: '22px',
+        func: () => console.log('How did he get up there pt 2')
     }
+    
 ];
 //container = HTML div covering entire page
 const container = document.querySelector('#game');
@@ -211,6 +226,12 @@ function game(){
         gameOverScore.innerHTML = kills;
         //add accuracy total to our accuracy span in html
         gameOverAccuracy.innerHTML = shots === 0 ? '0%' : Math.floor(kills/shots * 100) + '%';
+
+
+        //-----------add gameover audio
+        // let gameOverAudio = new Audio(`audio\niceshot07.wav`);
+        // gameOverAudio.volume = .1;
+        // gameOverAudio.play();
     }
 }
 //on clicking restart button reset startGame
@@ -220,7 +241,7 @@ restartBtn.addEventListener('click', function(e){
     e.stopPropagation();
 });
 
-//on startGame sent stat values to default
+//on startGame set stat values to default
 function startGame(){
     document.querySelector('#tip').style.display = 'none';
 
@@ -274,6 +295,6 @@ createEnemy();
 setLoadout();
 
 //start audio on page load
-let startup = new Audio(`audio/awp_boltforward.wav`);
-startup.volume = .5;
+let startup = new Audio(`audio/pl_respawn.wav`);
+startup.volume = .1;
 startup.play();
