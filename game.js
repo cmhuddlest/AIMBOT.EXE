@@ -9,8 +9,8 @@
 // ------move view model to follow mouse------
 // var cv = document.createElement('canvas');
 // var ctx = cv.getContext('2d');
-// cv.width = 1224;
-// cv.height = 768;
+// cv.width = 1000;
+// cv.height = 700;
 // document.body.appendChild(cv);
 
 // var centerX = 700, centerY = 600;
@@ -39,10 +39,51 @@
 // 	drawImg(cc);
 // };
 
-//killStat = HTML P Tag 'kills'
+
+
+
+// ------- actual code starts here ------------
+
+//set audio to nothing, so I can grab it in our setLoadout function
+let audioClip;
+
+//set game length time
+const GAME_LENGTH = 30;
+
+//------grab the loadout values from loadout.js and pass it to the #viewmodel in the HTML and select the proper loadout audio file
+function setLoadout(){
+    const urlParams = new URLSearchParams(window.location.search);
+    const myParam = urlParams.get('loadout');
+
+    let loadout = loadouts[parseInt(myParam) || 0];
+
+    document.querySelector('#viewmodel').src = `viewmodel images/${loadout.gameImage}`;
+
+    audioClip = `audio/${loadout.sound}`;
+}
+//play audio on click
+document.addEventListener('click', function(){
+    //do not play click audio if the game is over (if game timer is not real)
+    if(!gameTimer) return;
+    //create new audio each click so that the sound can be repeated as quickly as you click
+    let audio = new Audio(audioClip);
+    audio.volume = .20;
+    audio.play();
+    //each click adds one value to shot
+    shots++;
+
+    //------on each shot calculate kills/shot-----
+    setAccuracy(kills/shots)
+});
+
+//killStat = HTML span Tag 'kills'
 const killStat = document.querySelector('#kills');
-//timeStat = HTML P Tag 'Time'
+//timeStat = HTML span Tag 'Time'
 const timeStat = document.querySelector('#time');
+//accuracyStat = HTML span Tag 'accuracy'
+const accuracyStat = document.querySelector('#accuracy');
+
+
 //-----testing different enemy locations and sizes for array --------
 /*
     {
@@ -122,24 +163,75 @@ const enemies = [
 ];
 //container = HTML div covering entire page
 const container = document.querySelector('#game');
+//gameoverscreen grabs game.html id gameoverscreen
+const gameOverScreen = document.querySelector('#gameoverscreen');
+
+const gameOverScore = document.querySelector('#score');
+
+const gameOverAccuracy = document.querySelector('#accuracy-stat');
+
+const restartBtn = document.querySelector('.restart>button');
+
+const homeBtn = document.querySelector('.home>button');
 
 //create gameTimer, this will act as a identifier for when game has started and ended
 let gameTimer;
 
 //------set starting value for stats------
 let kills = 0;
+let shots = 0;
 let time = 0;
 
-//---- setKills = a value that will update HTML code with kill count
+//---- setKills = a variable that will update HTML code with kill count
 function setKills(val){
     kills = val;
     killStat.innerHTML = kills;
+}
+
+function setAccuracy(val){
+    accuracyStat.innerHTML = Math.floor(val * 100) + '%';
 }
 
 //---- setTime = a value that will update HTML code with timer
 function setTime(val){
     time = val;
     timeStat.innerHTML = time; //
+}
+
+function game(){
+    // ------repeat time less 1 -------
+    setTime(time-1);
+    // ------until 0, game over -------
+    if(time <= 0){
+        clearInterval(gameTimer);
+        gameTimer = undefined;
+        //when timer reaches 0, change display none to display flex to show it, edited in CSS
+        gameOverScreen.style.display = 'flex';
+        //add kills total to our kills span in html
+        gameOverScore.innerHTML = kills;
+        //add accuracy total to our accuracy span in html
+        gameOverAccuracy.innerHTML = shots === 0 ? '0%' : Math.floor(kills/shots * 100) + '%';
+    }
+}
+//on clicking restart button reset startGame
+restartBtn.addEventListener('click', function(e){
+    startGame();
+    e.preventDefault();
+    e.stopPropagation();
+});
+
+//on startGame sent stat values to default
+function startGame(){
+    document.querySelector('#tip').style.display = 'none';
+
+    shots = 0;
+    setKills(0);
+    setTime(GAME_LENGTH);
+    setAccuracy(1);
+//on restart take away game over screen
+    gameOverScreen.style.display = 'none';
+    //have game timer repeat each second (1000)
+    gameTimer = setInterval(game, 1000);
 }
 
 //----function to create the enemy div with class "enemy"-----
@@ -160,21 +252,10 @@ function createEnemy(){
 //------on first enemy "kill"----
     enemy.addEventListener('click', () => {
         enemyData.func();
-//----create game stat start points, timer start value and kills reset to 0 ------
+        
         if(!gameTimer){
-            setKills(0);
-            setTime(10);
-
-            // ------if no timer exists, start it-------
-            gameTimer = setInterval(() => {
-                // ------repeat time less 1 -------
-                setTime(time-1);
-                // ------until 0, game over -------
-                if(time <= 0){
-                    clearInterval(gameTimer);
-                    gameTimer = undefined;
-                }
-            }, 1000);
+            // If the game isn't running, start it
+            startGame();
         }
 //------on each kill add 1 to our kill value -----
         setKills(kills+1);
@@ -186,6 +267,13 @@ function createEnemy(){
    container.append(enemy);
 }
 
-//----- this is calling the function -------
+//----- this is calling the functions -------
 createEnemy();
 
+
+setLoadout();
+
+//start audio on page load
+let startup = new Audio(`audio/awp_boltforward.wav`);
+startup.volume = .5;
+startup.play();

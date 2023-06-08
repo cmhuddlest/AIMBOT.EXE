@@ -6,7 +6,7 @@ body {
     color: grey;
     background-color: black;
     text-align: center;
-    font-family: "Share+Tech+Mono:regular", sans-serif;
+    font-family: "Share Tech Mono";
 }
 
 .press{
@@ -41,3 +41,25 @@ background-color: grey;
   }
 
   
+
+/* select loadout buttons */
+#loadout-selector > button{
+  margin: 4px;
+background-color: transparent;
+outline: 0;
+border: 1px solid white;
+}
+/* select loadout button when hovering */
+#loadout-selector > button:hover{
+background-color: grey;
+}
+/* edit loadout button when selected */
+#loadout-selector > button.active{
+  background-color: grey;
+}
+
+/* select loadout button images */
+#loadout-selector > button > img{
+  height: 100px;
+  width: auto;
+}
