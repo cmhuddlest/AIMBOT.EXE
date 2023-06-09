@@ -8,12 +8,12 @@ const loadouts = [
 		sound: 'deagle-1.wav'
 	},
     {
-		loadoutImage: 'rifle 1.png',
+		loadoutImage: 'rifle 2.png',
 		gameImage: 'view model 2.png',
 		sound: 'ak47-1.wav'
 	},    
     {
-		loadoutImage: 'sniper 1.png',
+		loadoutImage: 'sniper 2.png',
 		gameImage: 'view model 3.png',
 		sound: 'awp1.wav'
 	}

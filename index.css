@@ -3,10 +3,14 @@
 body {
 
     height:100vh;
-    color: grey;
     background-color: black;
     text-align: center;
     font-family: "Share Tech Mono";
+    background-repeat: no-repeat;
+}
+
+h3{
+  color: grey;
 }
 
 .press{
@@ -33,6 +37,7 @@ background-color: grey;
 
   footer{
     padding-top: 25vh;
+    color: grey;
   }
 
   
@@ -58,3 +63,55 @@ background-color: grey;
   height: 100px;
   width: auto;
 }
+
+/*home page back ground image
+#homepage{
+
+}*/
+
+#webname{
+  display: grid;
+  min-height: 15vh;
+  place-content: center;
+  text-align: center;
+}
+
+h1{
+position: relative;
+font-size: 50px;
+color: red;
+filter: brightness(94%);
+border-right: 5px red solid;
+overflow: hidden;
+width: 100%;
+white-space: nowrap;
+animation:
+ typer 3s steps(13),
+ blink .4s step-end infinite alternate;
+}
+
+/* title typing effect that I have not finished */
+/* h1::before{
+  background-color: teal;
+  animation: typing 4s steps(12) forwards;
+}
+h1::after{
+  content: "";
+  position: absolute;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: inherit;
+  border-left: 2px solid red;
+  animation: typing 1.5s steps(10) infinite;
+  } */
+  @keyframes blink {
+    50%{
+      border-color: transparent;
+    }
+
+  }
+
+  @keyframes typer {
+    from{width: 0}
+  }

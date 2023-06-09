@@ -1,48 +1,4 @@
-//-------custom crosshair --------
-// crosshair = document.querySelector('.crosshair')
-
-// // window.addEventListener('mousemove',function(e){
-// // crosshair.style.left = e.pageX + "px";
-// // crosshair.style.top = e.pageY + "px";
-// // })
-
-// ------move view model to follow mouse------
-// var cv = document.createElement('canvas');
-// var ctx = cv.getContext('2d');
-// cv.width = 1000;
-// cv.height = 700;
-// document.body.appendChild(cv);
-
-// var centerX = 700, centerY = 600;
-
-// var img = new Image();
-// img.onload = function() {
-// 	drawImg(0);
-// };
-// img.src = 'view model.png';
-
-
-// function drawImg(angle) {
-//   ctx.clearRect(0, 0, cv.width, cv.height);
-// 	ctx.save();
-//   ctx.translate(centerX, centerY);
-//   ctx.rotate(-Math.PI / 2);
-//   ctx.rotate(angle);
-//   ctx.drawImage(img, -img.width / 2, -img.height / 2);
-//   ctx.restore();
-// }
-
-// document.onmousemove = function(e) {
-//   var aa = e.pageX - centerX;
-//   var bb = e.pageY - centerY;
-//   var cc = Math.atan2(aa, bb);
-// 	drawImg(cc);
-// };
-
-
-
-
-// ------- actual code starts here ------------
+// ------- game code ------------
 
 //set audio to nothing, so I can grab it in our setLoadout function
 let audioClip;
@@ -61,8 +17,8 @@ function setLoadout(){
 
     audioClip = `audio/${loadout.sound}`;
 }
-//play audio on click
-document.addEventListener('click', function(){
+    //play audio on click
+    document.addEventListener('click', function(){
     //do not play click audio if the game is over (if game timer is not real)
     if(!gameTimer) return;
     //create new audio each click so that the sound can be repeated as quickly as you click
@@ -92,7 +48,6 @@ const accuracyStat = document.querySelector('#accuracy');
         height: '60px',
         width: '25px',
         func: () => console.log('A long guy') //potential kill feed call value
-        //---- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions ----
     },
     {
         x: .69,
@@ -109,9 +64,6 @@ const accuracyStat = document.querySelector('#accuracy');
         func: () => console.log('Guy who planted')
     }
 */
-//----original thought on arrays for location and size----
-// const enemyLocs = [[.18, .48]];
-// const enemySizes = [['60px', '25px']];
 
 //-----array of good enemy locations for dust map------
 //array:
@@ -119,10 +71,10 @@ const enemies = [
     //objects:
     {
         x: .18, //left and right
-        y: .48, //up and down
-        height: '60px',
+        y: .49, //up and down 1 = very bottom
+        height: '49px',
         width: '25px',
-        func: () => console.log('A long guy') //potential kill feed call value
+        func: () => console.log('A long guy') //potential kill feed log
     //     //---- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions ----
     },
     {
@@ -155,7 +107,7 @@ const enemies = [
     },
     {
         x: .94,
-        y: .07,
+        y: .08,
         height: '77px',
         width: '80px',
         func: () => console.log('How did he get up there')
@@ -168,8 +120,8 @@ const enemies = [
         func: () => console.log('Coming up long')
     },
     {
-        x: .17,
-        y: .3722,
+        x: .16,
+        y: .375,
         height: '42px',
         width: '22px',
         func: () => console.log('How did he get up there pt 2')
@@ -178,7 +130,7 @@ const enemies = [
 ];
 //container = HTML div covering entire page
 const container = document.querySelector('#game');
-//gameoverscreen grabs game.html id gameoverscreen
+//gameoverscreen grabs game.html ids
 const gameOverScreen = document.querySelector('#gameoverscreen');
 
 const gameOverScore = document.querySelector('#score');
@@ -197,7 +149,7 @@ let kills = 0;
 let shots = 0;
 let time = 0;
 
-//---- setKills = a variable that will update HTML code with kill count
+//---- setKills/setAccuracy/setTime = a variable that will update HTML code with stat figures
 function setKills(val){
     kills = val;
     killStat.innerHTML = kills;
@@ -207,12 +159,11 @@ function setAccuracy(val){
     accuracyStat.innerHTML = Math.floor(val * 100) + '%';
 }
 
-//---- setTime = a value that will update HTML code with timer
 function setTime(val){
     time = val;
     timeStat.innerHTML = time; //
 }
-
+//-----function to state game on or off-----
 function game(){
     // ------repeat time less 1 -------
     setTime(time-1);
@@ -229,9 +180,9 @@ function game(){
 
 
         //-----------add gameover audio
-        // let gameOverAudio = new Audio(`audio\niceshot07.wav`);
-        // gameOverAudio.volume = .1;
-        // gameOverAudio.play();
+        let gameOverAudio = new Audio(`audio/niceshot07.wav`);
+        gameOverAudio.volume = .1;
+        gameOverAudio.play();
     }
 }
 //on clicking restart button reset startGame
@@ -249,7 +200,7 @@ function startGame(){
     setKills(0);
     setTime(GAME_LENGTH);
     setAccuracy(1);
-//on restart take away game over screen
+    //on restart take away game over screen
     gameOverScreen.style.display = 'none';
     //have game timer repeat each second (1000)
     gameTimer = setInterval(game, 1000);
@@ -288,7 +239,7 @@ function createEnemy(){
    container.append(enemy);
 }
 
-//----- this is calling the functions -------
+//----- calling the functions -------
 createEnemy();
 
 
@@ -298,3 +249,48 @@ setLoadout();
 let startup = new Audio(`audio/pl_respawn.wav`);
 startup.volume = .1;
 startup.play();
+
+
+//------- end of game code ---------
+
+
+
+
+
+
+
+
+
+
+// ------move view model to follow mouse------
+// var cv = document.createElement('canvas');
+// var ctx = cv.getContext('2d');
+// cv.width = 1000;
+// cv.height = 700;
+// document.body.appendChild(cv);
+
+// var centerX = 700, centerY = 600;
+
+// var img = new Image();
+// img.onload = function() {
+// 	drawImg(0);
+// };
+// img.src = 'view model.png';
+
+
+// function drawImg(angle) {
+//   ctx.clearRect(0, 0, cv.width, cv.height);
+// 	ctx.save();
+//   ctx.translate(centerX, centerY);
+//   ctx.rotate(-Math.PI / 2);
+//   ctx.rotate(angle);
+//   ctx.drawImage(img, -img.width / 2, -img.height / 2);
+//   ctx.restore();
+// }
+
+// document.onmousemove = function(e) {
+//   var aa = e.pageX - centerX;
+//   var bb = e.pageY - centerY;
+//   var cc = Math.atan2(aa, bb);
+// 	drawImg(cc);
+// };

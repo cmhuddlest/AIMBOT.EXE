@@ -3,7 +3,7 @@ let selectedLoadout = 0;
 
 //select div
 const loadoutSelector = document.querySelector('#loadout-selector');
-//create buttons for loadout selection
+//create buttons for loadout selection using loadout array weapon images
 loadouts.forEach(function (l, index) {
 	let loadoutBtn = document.createElement('button');
 
