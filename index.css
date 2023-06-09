@@ -6,8 +6,22 @@ body {
     background-color: black;
     text-align: center;
     font-family: "Share Tech Mono";
-    background-repeat: no-repeat;
+    /* background-color: linear-gradient(45deg, black, whitesmoke, red);
+    background-size: 300% 300%;
+    animation: color 12s ease-in-out infinite; */
 }
+
+/* @keyframes color{
+  0%{
+    background-position: 0 50%;
+  }
+  50%{
+    background-position: 100% 50%;
+  }
+  100%{
+    background-position: 0 50%;
+  }
+} */
 
 h3{
   color: grey;
@@ -36,7 +50,7 @@ background-color: grey;
   }
 
   footer{
-    padding-top: 25vh;
+    padding-top: 15vh;
     color: grey;
   }
 
@@ -52,6 +66,7 @@ border: 1px solid white;
 /* select loadout button when hovering */
 #loadout-selector > button:hover{
 background-color: grey;
+cursor: pointer;
 }
 /* edit loadout button when selected */
 #loadout-selector > button.active{
@@ -64,10 +79,10 @@ background-color: grey;
   width: auto;
 }
 
-/*home page back ground image
-#homepage{
+/* home page back ground image */
+/* #homepage{
 
-}*/
+} */
 
 #webname{
   display: grid;
@@ -86,25 +101,10 @@ overflow: hidden;
 width: 100%;
 white-space: nowrap;
 animation:
- typer 3s steps(13),
- blink .4s step-end infinite alternate;
+ typer 3s steps(12),
+ blink .2s step-end infinite alternate;
 }
 
-/* title typing effect that I have not finished */
-/* h1::before{
-  background-color: teal;
-  animation: typing 4s steps(12) forwards;
-}
-h1::after{
-  content: "";
-  position: absolute;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  background-color: inherit;
-  border-left: 2px solid red;
-  animation: typing 1.5s steps(10) infinite;
-  } */
   @keyframes blink {
     50%{
       border-color: transparent;

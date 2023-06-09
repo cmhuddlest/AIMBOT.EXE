@@ -13,7 +13,7 @@ margin: 0;
 padding: 0;
 }
 *{
-    cursor: url(crosshair.png) 5 5, crosshair;
+    cursor: url(crosshair.png) 16 16, crosshair;
     user-select: none;
 }
 
