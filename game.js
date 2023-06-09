@@ -250,6 +250,9 @@ let startup = new Audio(`audio/pl_respawn.wav`);
 startup.volume = .1;
 startup.play();
 
+let chris = ':)'
+console.log(chris)
+
 
 //------- end of game code ---------
 

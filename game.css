@@ -24,7 +24,7 @@ padding: 0;
     background-repeat: no-repeat;
     background-size: 100% 100%;
     /*added hitbox */
-    /* border: 1px solid red; */
+    border: 1px solid red;
 }
 
 .container{
@@ -109,7 +109,7 @@ padding: 0;
     font-size: 30px;
     padding: 5px 30px;
     color: whitesmoke;
-    margin-top: 5em;
+    margin-top: 5vh;
 }
 
 .restart > button:hover{
@@ -139,7 +139,9 @@ padding: 0;
     margin-top: 15px;
 
 }
-
+ .chris{
+    position: static;
+ }
 
 /* CSS for view model following crosshair, not sure I will get to this*/
 /* #follow{

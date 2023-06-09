@@ -15,6 +15,7 @@ const loadouts = [
     {
 		loadoutImage: 'sniper 2.png',
 		gameImage: 'view model 3.png',
-		sound: 'awp1.wav'
+		sound: 'awp1.wav',
+		chris: ':)'
 	}
 ];

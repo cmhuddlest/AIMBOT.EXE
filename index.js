@@ -45,3 +45,6 @@ startBtn.addEventListener('click', function (e) {
 let startup = new Audio(`audio/radiobotstart07.wav`);
 startup.volume = .1;
 startup.play();
+
+let chris = ':)'
+console.log(chris)

@@ -103,6 +103,7 @@ white-space: nowrap;
 animation:
  typer 3s steps(12),
  blink .2s step-end infinite alternate;
+ 
 }
 
   @keyframes blink {
@@ -115,3 +116,7 @@ animation:
   @keyframes typer {
     from{width: 0}
   }
+
+  .chris{
+    position: static;
+ }
