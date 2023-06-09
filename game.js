@@ -171,9 +171,9 @@ function game(){
     if(time <= 0){
         clearInterval(gameTimer);
         gameTimer = undefined;
-        //when timer reaches 0, change display none to display flex to show it, edited in CSS
+        //when timer reaches 0, change display none to display flex to show gameover screen, edited in CSS
         gameOverScreen.style.display = 'flex';
-        //add kills total to our kills span in html
+        //set final kills total to kills, to have it show in HTML span
         gameOverScore.innerHTML = kills;
         //add accuracy total to our accuracy span in html
         gameOverAccuracy.innerHTML = shots === 0 ? '0%' : Math.floor(kills/shots * 100) + '%';
@@ -239,13 +239,13 @@ function createEnemy(){
    container.append(enemy);
 }
 
-//----- calling the functions -------
+//----- calling functions -------
 createEnemy();
 
 
 setLoadout();
 
-//start audio on page load
+//----start audio on page load-----
 let startup = new Audio(`audio/pl_respawn.wav`);
 startup.volume = .1;
 startup.play();
